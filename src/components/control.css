@@ -5,3 +5,7 @@
 .control.MuiCard-root {
   padding: unset;
 }
+
+.control--color-picker.dx-texteditor.dx-editor-outlined {
+  width: 150px;
+}
