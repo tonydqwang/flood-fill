@@ -5,6 +5,7 @@ import './App.css';
 import { AppContext } from './components/app-context';
 import Header from './components/header';
 import Canvas from './components/canvas';
+import Control from './components/control';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -17,6 +18,10 @@ function App() {
       canvasSizeY,
       canvasData,
       activeColor,
+    },
+    handlers: {
+      handleSizeXChange,
+      handleSizeYChange,
     },
   } = appContext;
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -37,6 +42,12 @@ function App() {
         <Header />
         <main>
           <div className='main'>
+            <Control 
+              sizeX={canvasSizeX} 
+              sizeY={canvasSizeY}
+              handleSizeXChange={handleSizeXChange}
+              handleSizeYChange={handleSizeYChange}
+            />
             <Canvas 
               data={canvasData} 
               sizeX={canvasSizeX} 
