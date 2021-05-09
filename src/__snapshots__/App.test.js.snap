@@ -15,7 +15,132 @@ exports[`renders learn react link 1`] = `
     <main>
       <div
         class="main"
-      />
+      >
+        <div
+          class="MuiPaper-root MuiCard-root canvas MuiPaper-elevation1 MuiPaper-rounded"
+        >
+          <div
+            class="canvas--row"
+          >
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+          </div>
+          <div
+            class="canvas--row"
+          >
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+          </div>
+          <div
+            class="canvas--row"
+          >
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+          </div>
+          <div
+            class="canvas--row"
+          >
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+          </div>
+          <div
+            class="canvas--row"
+          >
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+            <div
+              class="canvas--cell"
+              style="background-color: rgb(255, 255, 255);"
+            />
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 </body>
