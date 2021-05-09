@@ -2,12 +2,23 @@ import React, { useContext } from 'react';
 import 'devextreme/dist/css/dx.common.css';
 import 'devextreme/dist/css/dx.light.css';
 import './App.css';
+import { AppContext } from './components/app-context';
 import Header from './components/header';
+import Canvas from './components/canvas';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
+  const appContext = useContext(AppContext);
+  const {
+    state: {
+      canvasSizeX,
+      canvasSizeY,
+      canvasData,
+      activeColor,
+    },
+  } = appContext;
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const theme = React.useMemo(
     () =>
@@ -26,6 +37,12 @@ function App() {
         <Header />
         <main>
           <div className='main'>
+            <Canvas 
+              data={canvasData} 
+              sizeX={canvasSizeX} 
+              sizeY={canvasSizeY}
+              color={activeColor}
+            />
           </div>
         </main>
       </ThemeProvider>
