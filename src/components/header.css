@@ -1,0 +1,13 @@
+.header {
+  background-color: #222;
+  height: 64px;
+}
+
+.header p {
+  color: #CCC;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 0 20px;
+  line-height: 24px;
+  padding-top: 20px;
+}
