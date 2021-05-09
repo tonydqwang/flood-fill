@@ -17,11 +17,15 @@ function App() {
       canvasSizeX,
       canvasSizeY,
       canvasData,
+      activeTool,
       activeColor,
     },
     handlers: {
       handleSizeXChange,
       handleSizeYChange,
+      handleToolChange,
+      handleColorChange,
+      handleClick,
     },
   } = appContext;
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -47,12 +51,16 @@ function App() {
               sizeY={canvasSizeY}
               handleSizeXChange={handleSizeXChange}
               handleSizeYChange={handleSizeYChange}
+              tool={activeTool}
+              handleToolChange={handleToolChange}
+              color={activeColor}
+              handleColorChange={handleColorChange}
             />
             <Canvas 
               data={canvasData} 
               sizeX={canvasSizeX} 
               sizeY={canvasSizeY}
-              color={activeColor}
+              handleClick={handleClick}
             />
           </div>
         </main>

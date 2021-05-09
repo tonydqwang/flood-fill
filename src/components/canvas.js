@@ -6,6 +6,7 @@ const Canvas = (props) => {
     sizeX, 
     sizeY, 
     data,
+    handleClick,
   } = props;
   const rows = sizeX && sizeY && data && data.reduce((rows, datum) => {
     const rowNumber = datum.y;
@@ -29,6 +30,7 @@ const Canvas = (props) => {
                   className='canvas--cell' 
                   key={`${cell.x},${cell.y}}`}
                   style={{ backgroundColor: `${cell.color}` }}
+                  onMouseDown={() => handleClick(cell.x, cell.y)}
                 />
               )
             }
