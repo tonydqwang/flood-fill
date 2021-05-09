@@ -1,0 +1,7 @@
+.control {
+  max-width: 200px;
+}
+
+.control.MuiCard-root {
+  padding: unset;
+}

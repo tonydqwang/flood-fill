@@ -28,8 +28,36 @@ const AppCtxProvider = (props) => {
     return data;
   }
 
+  const handleSizeXChange = (event) => {
+    const newX = event.target.value;
+    if (newX < 1 || newX > 15) return;
+    const newData = genData(newX, state.canvasSizeY);
+    setState({
+      ...state,
+      canvasSizeX: newX,
+      canvasData: newData,
+    })
+  }
+
+  const handleSizeYChange = (event) => {
+    const newY = event.target.value;
+    if (newY < 1 || newY > 15) return;
+    const newData = genData(state.canvasSizeX, newY);
+    setState({
+      ...state,
+      canvasSizeY: newY,
+      canvasData: newData,
+    })
+  }
+
   return (
-    <AppContext.Provider value={{ state }}>
+    <AppContext.Provider value={{ 
+      state,
+      handlers: {
+        handleSizeXChange,
+        handleSizeYChange,
+      }
+    }}>
       {props.children}
     </AppContext.Provider>
   )
