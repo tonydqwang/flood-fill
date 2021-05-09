@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 const AppContext = React.createContext();
 
 const initState = {
-  canvasSizeX: 8,
+  canvasSizeX: 10,
   canvasSizeY: 10,
   activeTool: 'pencil',
   activeColor: '#ffffff',
@@ -32,7 +32,7 @@ const AppCtxProvider = (props) => {
 
   const handleSizeXChange = (event) => {
     const newX = event.target.value;
-    if (newX < 1 || newX > 15) return;
+    if (newX < 1 || newX > 20) return;
     const newData = genData(newX, state.canvasSizeY);
     setState({
       ...state,
@@ -43,7 +43,7 @@ const AppCtxProvider = (props) => {
 
   const handleSizeYChange = (event) => {
     const newY = event.target.value;
-    if (newY < 1 || newY > 15) return;
+    if (newY < 1 || newY > 50) return;
     const newData = genData(state.canvasSizeX, newY);
     setState({
       ...state,
@@ -67,8 +67,12 @@ const AppCtxProvider = (props) => {
   }
 
   const handleClick = (x, y) => {
+    const cell = state.canvasData.find(cell => cell.x === x && cell.y === y)
+    if (cell.color === state.activeColor) {
+      return
+    }
+
     if (state.activeTool === 'pencil') {
-      const cell = state.canvasData.find(cell => cell.x === x && cell.y === y)
       cell.color = state && state.activeColor;
     } else {
       fillConnected(x, y, state.canvasData);
@@ -89,8 +93,6 @@ const AppCtxProvider = (props) => {
   const fillConnected = (x, y, searchSpace) => {
     const currentCell = state.canvasData.find(cell => cell.x === x && cell.y === y);
     const currentColor = currentCell.color;
-    console.log('filling ' + x + ', '+ y)
-
     const neighboursAddrsTheoretical = [
       { x, y: y-1 },
       { x: x-1, y },
@@ -104,7 +106,6 @@ const AppCtxProvider = (props) => {
     const neighboursSameColor = neighbours.filter(cell => cell.color === currentColor);
     const narrowedSearchSpace = searchSpace.filter(cell => cell !== currentCell && !neighboursSameColor.some(nc => nc === cell));
     neighboursSameColor.forEach(neighbour => fillConnected(neighbour.x, neighbour.y, narrowedSearchSpace));
-    console.log('filled ' + x + ', ' + y)
     currentCell.color = state && state.activeColor;
   }
 
