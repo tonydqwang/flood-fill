@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders learn react link 1`] = `
+<body>
+  <div>
+    <header>
+      <div
+        class="header"
+      >
+        <p>
+          / Welcome to Flood Fill
+        </p>
+      </div>
+    </header>
+    <main>
+      <div
+        class="main"
+      />
+    </main>
+  </div>
+</body>
+`;
