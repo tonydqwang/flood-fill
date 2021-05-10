@@ -1,6 +1,5 @@
 import './control.css'
 import Card from '@material-ui/core/Card';
-import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -8,8 +7,20 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import ColorBox from 'devextreme-react/color-box';
+import { Tools } from '../common/enums';
+import { ChangeEvent } from 'react';
 
-const Controls = (props) => {
+type ControlProps = {
+  sizeX: number,
+  sizeY: number,
+  tool: Tools,
+  handleSizeXChange: (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void,
+  handleSizeYChange: (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void,
+  handleToolChange: (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void,
+  handleColorChange: (obj: { value?: string; }) => void,
+}
+
+const Controls = (props: ControlProps) => {
   const { 
     sizeX, 
     sizeY,
