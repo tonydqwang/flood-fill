@@ -9,6 +9,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import ColorBox from 'devextreme-react/color-box';
 import { Tools } from '../common/enums';
 import { ChangeEvent } from 'react';
+import constants from '../common/constants.json';
 
 type ControlProps = {
   sizeX: number,
@@ -37,9 +38,10 @@ const Controls = (props: ControlProps) => {
     <Card className='control'>
       <div className="dx-fieldset">
         <div className="dx-fieldset-header">Canvas Size</div>
+        <p className="control--width-height--subtitle">Enter amount or adjust with keyboard arrow key</p>
         <TextField
           id="control--width"
-          label="Width"
+          label={`Width (max ${constants.sizeXMax})`}
           type="number"
           InputLabelProps={{ shrink: true }}
           onChange={handleSizeXChange}
@@ -47,7 +49,7 @@ const Controls = (props: ControlProps) => {
         />
         <TextField
           id="control--height"
-          label="Height"
+          label={`Height (max ${constants.sizeYMax})`}
           type="number"
           InputLabelProps={{ shrink: true }}
           onChange={handleSizeYChange}

@@ -2,6 +2,7 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 import { Point } from '../common/types';
 import { Tools } from '../common/enums';
 import { AppCtxInterface } from './app-context.d';
+import constants from '../common/constants.json';
 
 type AppCtxProps = {
   children: JSX.Element,
@@ -50,7 +51,7 @@ const AppCtxProvider = (props: AppCtxProps) => {
 
   const handleSizeXChange = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     const newX = Number(event.target.value);
-    if (newX < 1 || newX > 20) return;
+    if (newX < 1 || newX > constants.sizeXMax) return;
     const newData = genData(newX, state.canvasSizeY);
     setState({
       ...state,
@@ -61,7 +62,7 @@ const AppCtxProvider = (props: AppCtxProps) => {
 
   const handleSizeYChange = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     const newY = Number(event.target.value);
-    if (newY < 1 || newY > 50) return;
+    if (newY < 1 || newY > constants.sizeYMax) return;
     const newData = genData(state.canvasSizeX, newY);
     setState({
       ...state,
