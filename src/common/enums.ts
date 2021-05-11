@@ -1,6 +1,6 @@
 enum Tools {
-  Pencil,
-  FloodTool,
+  Pencil = 'pencil',
+  FloodTool = 'flood-tool',
 }
 
 export {

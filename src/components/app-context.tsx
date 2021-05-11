@@ -1,14 +1,32 @@
-import React, { useState, useEffect } from 'react';
-const AppContext = React.createContext();
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import { Point } from '../common/types';
+import { Tools } from '../common/enums';
+import { AppCtxInterface } from './app-context.d';
+
+type AppCtxProps = {
+  children: JSX.Element,
+}
 
 const initState = {
   canvasSizeX: 10,
   canvasSizeY: 10,
-  activeTool: 'pencil',
+  activeTool: Tools.Pencil,
   activeColor: '#ffffff',
+  canvasData: Array<Point>(),
 }
 
-const AppCtxProvider = (props) => {
+const AppContext = React.createContext<AppCtxInterface>({
+  state: initState,
+  handlers: {
+    handleSizeXChange: (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {},
+    handleSizeYChange: (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {},
+    handleToolChange: (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {},
+    handleColorChange: (obj: { value?: string; }) => {},
+    handleClick: (x: number, y: number) => {},
+  }
+});
+
+const AppCtxProvider = (props: AppCtxProps) => {
   const [state, setState] = useState(initState);
 
   useEffect(() => {
@@ -20,7 +38,7 @@ const AppCtxProvider = (props) => {
     })
   }, [])
 
-  const genData = (sizeX, sizeY) => {
+  const genData = (sizeX: number, sizeY: number): Point[] => {
     const data = Array(sizeX * sizeY)
     for (var y = 0; y < sizeY; y++) {
       for (var x = 0; x < sizeX; x++) {
@@ -30,8 +48,8 @@ const AppCtxProvider = (props) => {
     return data;
   }
 
-  const handleSizeXChange = (event) => {
-    const newX = event.target.value;
+  const handleSizeXChange = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const newX = Number(event.target.value);
     if (newX < 1 || newX > 20) return;
     const newData = genData(newX, state.canvasSizeY);
     setState({
@@ -41,8 +59,8 @@ const AppCtxProvider = (props) => {
     })
   }
 
-  const handleSizeYChange = (event) => {
-    const newY = event.target.value;
+  const handleSizeYChange = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const newY = Number(event.target.value);
     if (newY < 1 || newY > 50) return;
     const newData = genData(state.canvasSizeX, newY);
     setState({
@@ -52,27 +70,27 @@ const AppCtxProvider = (props) => {
     })
   }
 
-  const handleToolChange = (event) => {
+  const handleToolChange = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setState({
       ...state,
-      activeTool: event.target.value,
+      activeTool: event.target.value === 'pencil' ? Tools.Pencil : Tools.FloodTool,
     })
   }
 
-  const handleColorChange = ({ value }) => {
-    setState({
+  const handleColorChange = ({ value }: { value?: string}) => {
+    value && setState({
       ...state,
       activeColor: value,
     })
   }
 
-  const handleClick = (x, y) => {
-    const cell = state.canvasData.find(cell => cell.x === x && cell.y === y)
-    if (cell.color === state.activeColor) {
+  const handleClick = (x: number, y: number) => {
+    const cell = state.canvasData.find(datum => datum.x === x && datum.y === y)
+    if (!cell || cell.color === state.activeColor) {
       return
     }
 
-    if (state.activeTool === 'pencil') {
+    if (state.activeTool === Tools.Pencil) {
       cell.color = state && state.activeColor;
     } else {
       fillConnected(x, y, state.canvasData);
@@ -90,8 +108,11 @@ const AppCtxProvider = (props) => {
    * @param {*} y 
    * @param {*} searchSpace 
    */
-  const fillConnected = (x, y, searchSpace) => {
+  const fillConnected = (x: number, y: number, searchSpace: Point[]) => {
     const currentCell = state.canvasData.find(cell => cell.x === x && cell.y === y);
+    if (!currentCell) {
+      return
+    }
     const currentColor = currentCell.color;
     const neighboursAddrsTheoretical = [
       { x, y: y-1 },

@@ -14,6 +14,7 @@ type ControlProps = {
   sizeX: number,
   sizeY: number,
   tool: Tools,
+  color: string,
   handleSizeXChange: (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void,
   handleSizeYChange: (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void,
   handleToolChange: (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void,
@@ -25,6 +26,7 @@ const Controls = (props: ControlProps) => {
     sizeX, 
     sizeY,
     tool,
+    color,
     handleSizeXChange,
     handleSizeYChange,
     handleToolChange,
@@ -58,8 +60,8 @@ const Controls = (props: ControlProps) => {
         <FormControl className='control--tools' component="fieldset">
           <FormLabel component="legend">Tools</FormLabel>
           <RadioGroup aria-label="tool" name="tool" value={tool} onChange={handleToolChange}>
-            <FormControlLabel value="pencil" control={<Radio />} label="Pencil" />
-            <FormControlLabel value="fill-tool" control={<Radio />} label="Fill tool" />
+            <FormControlLabel value={Tools.Pencil} control={<Radio />} label="Pencil" />
+            <FormControlLabel value={Tools.FloodTool} control={<Radio />} label="Fill tool" />
           </RadioGroup>
         </FormControl>
       </div>
@@ -68,7 +70,7 @@ const Controls = (props: ControlProps) => {
         <div className="dx-fieldset-header">Colours</div>
         <ColorBox 
           className='control--color-picker' 
-          defaultValue="#ffffff"
+          defaultValue={color}
           applyValueMode="instantly"
           onValueChanged={handleColorChange}
         />
