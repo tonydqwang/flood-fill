@@ -12,22 +12,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
   const appContext = useContext(AppContext);
-  const {
-    state: {
-      canvasSizeX,
-      canvasSizeY,
-      canvasData,
-      activeTool,
-      activeColor,
-    },
-    handlers: {
-      handleSizeXChange,
-      handleSizeYChange,
-      handleToolChange,
-      handleColorChange,
-      handleClick,
-    },
-  } = appContext;
+  const { state, handlers } = appContext;
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const theme = React.useMemo(
     () =>
@@ -47,20 +32,20 @@ function App() {
         <main>
           <div className='main'>
             <Control 
-              sizeX={canvasSizeX} 
-              sizeY={canvasSizeY}
-              handleSizeXChange={handleSizeXChange}
-              handleSizeYChange={handleSizeYChange}
-              tool={activeTool}
-              handleToolChange={handleToolChange}
-              color={activeColor}
-              handleColorChange={handleColorChange}
+              sizeX={state.canvasSizeX} 
+              sizeY={state.canvasSizeY}
+              handleSizeXChange={handlers.handleSizeXChange}
+              handleSizeYChange={handlers.handleSizeYChange}
+              tool={state.activeTool}
+              handleToolChange={handlers.handleToolChange}
+              color={state.activeColor}
+              handleColorChange={handlers.handleColorChange}
             />
             <Canvas 
-              data={canvasData} 
-              sizeX={canvasSizeX} 
-              sizeY={canvasSizeY}
-              handleClick={handleClick}
+              data={state.canvasData} 
+              sizeX={state.canvasSizeX} 
+              sizeY={state.canvasSizeY}
+              handleClick={handlers.handleClick}
             />
           </div>
         </main>
